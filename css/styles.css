@@ -123,6 +123,22 @@ ul {
 .site-nav .link.current {
   color: var(--accent-color);
 }
+.current-studio {
+  position: relative;
+}
+.current-portfolio {
+  position: relative;
+}
+.site-nav .link.current::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: '';
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
 /* -----------AUTH-NAV-------- */
 .auth-nav {
   display: flex;
@@ -479,9 +495,6 @@ ul {
 
   opacity: 0;
 }
-/* .card-thumb:hover::before {
-  opacity: 1;
-} */
 
 .thumb-text {
   position: absolute;
@@ -523,10 +536,12 @@ ul {
   display: block;
   text-decoration: none;
 }
-.work-exemples:hover .card-thumb::before {
+.work-exemples:hover .card-thumb::before,
+.work-exemples:focus .card-thumb::before {
   opacity: 1;
 }
-.work-exemples:hover .card-text {
+.work-exemples:hover .card-text,
+.work-exemples:focus .card-text {
   opacity: 1;
 }
 
