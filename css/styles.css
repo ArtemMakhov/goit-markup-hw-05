@@ -28,6 +28,7 @@
     0px 2px 1px rgba(0, 0, 0, 0.2);
   --backdrop-color: rgba(0, 0, 0, 0.2);
   --main-gap: 30px;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   margin: 0;
@@ -118,6 +119,8 @@ ul {
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
+
+  transition: color 250ms var(--timing-function);
 }
 .site-nav .link:hover,
 .site-nav .link:focus {
@@ -137,6 +140,7 @@ ul {
   bottom: 0;
   right: 0;
   content: '';
+
   width: 100%;
   height: 4px;
   background-color: var(--accent-color);
@@ -152,13 +156,17 @@ ul {
 }
 .auth-nav .link {
   display: flex;
+
   color: var(--primary-text-color);
+
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
   align-items: center;
+
+  transition: color 250ms var(--timing-function);
 }
 .nav-icon {
   margin-right: 10px;
@@ -488,32 +496,46 @@ ul {
 }
 .card-thumb {
   position: relative;
+  overflow: hidden;
 }
-.card-thumb::before {
+/* .card-thumb::before {
   position: absolute;
   content: '';
   width: 100%;
   height: 100%;
   background-color: rgba(33, 150, 243, 0.9);
 
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+
+  opacity: 1;
+} */
+
+.thumb-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+
   opacity: 0;
 }
-
-.thumb-text {
+.card-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 322px;
-}
-.card-text {
+
   margin: 0px;
   font-size: 18px;
   line-height: 1.56;
   letter-spacing: 0.03em;
   color: var(--primary-white-color);
-  opacity: 0;
 }
 
 .card-content {
@@ -539,12 +561,9 @@ ul {
   display: block;
   text-decoration: none;
 }
-.work-exemples:hover .card-thumb::before,
-.work-exemples:focus .card-thumb::before {
-  opacity: 1;
-}
-.work-exemples:hover .card-text,
-.work-exemples:focus .card-text {
+.work-exemples:hover .thumb-overlay,
+.work-exemples:focus .thumb-overlay {
+  transform: translateY(0);
   opacity: 1;
 }
 
