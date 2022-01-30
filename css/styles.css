@@ -29,6 +29,7 @@
   --backdrop-color: rgba(0, 0, 0, 0.2);
   --main-gap: 30px;
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --time: 250ms;
 }
 body {
   margin: 0;
@@ -37,6 +38,15 @@ body {
 
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0.03em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 img {
   display: block;
@@ -120,7 +130,7 @@ ul {
   letter-spacing: 0.02em;
   text-decoration: none;
 
-  transition: color 250ms var(--timing-function);
+  transition: color var(--time) var(--timing-function);
 }
 .site-nav .link:hover,
 .site-nav .link:focus {
@@ -166,7 +176,7 @@ ul {
   text-decoration: none;
   align-items: center;
 
-  transition: color 250ms var(--timing-function);
+  transition: color var(--time) var(--timing-function);
 }
 .nav-icon {
   margin-right: 10px;
@@ -269,8 +279,6 @@ ul {
   text-transform: uppercase;
 }
 .advantages-text {
-  margin-top: 0;
-  margin-bottom: 0;
   font-size: 14px;
   line-height: 1.71;
   height: 75px;
@@ -297,6 +305,31 @@ ul {
 }
 .works-list .item:not(:last-child) {
   margin-right: var(--main-gap);
+}
+.works-item {
+  position: relative;
+}
+.works-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--primary-white-color);
+}
+.works-background-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(47, 48, 58, 0.8);
 }
 /* --------TEAM------- */
 .team-list .item:not(:last-child) {
@@ -325,7 +358,6 @@ ul {
   background-color: var(--background-color-command);
 }
 .team-text {
-  margin-top: 0;
   margin-bottom: 16px;
   font-size: 16px;
   line-height: 1.18;
@@ -343,6 +375,8 @@ ul {
   height: 44px;
 
   border-radius: 50%;
+  transition: background-color var(--time) var(--timing-function),
+    color var(--time) var(--timing-function);
 }
 
 .team-link:hover,
@@ -364,13 +398,18 @@ ul {
 }
 .clients-link {
   display: flex;
-  border: 1px solid var(--networks-icons-color);
+
   border-radius: 4px;
   width: 170px;
   height: 92px;
   justify-content: center;
   align-items: center;
+
   color: var(--networks-icons-color);
+  border: 1px solid var(--networks-icons-color);
+
+  transition: background-color var(--time) var(--timing-function),
+    color var(--time) var(--timing-function);
 }
 .icon-clients {
   fill: currentColor;
@@ -424,7 +463,6 @@ ul {
   margin-bottom: 20px;
   color: var(--primary-white-color);
 
-  margin-top: 0;
   margin-bottom: 20px;
   font-weight: 700;
   font-size: 14px;
@@ -439,14 +477,14 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  color: var(--primary-white-color);
-
   width: 44px;
   height: 44px;
+  color: var(--primary-white-color);
 
   border-radius: 50%;
   background-color: var(--background-footer-icon);
+
+  transition: background-color var(--time) var(--timing-function);
 }
 .footer-link:hover,
 .footer-link:focus {
@@ -476,6 +514,10 @@ ul {
   border-radius: 4px;
   text-align: center;
   letter-spacing: 0.03em;
+
+  transition: color var(--time) var(--timing-function),
+    background-color var(--time) var(--timing-function),
+    box-shadow var(--time) var(--timing-function);
 }
 .filter-button:hover,
 .filter-button:focus {
@@ -498,18 +540,6 @@ ul {
   position: relative;
   overflow: hidden;
 }
-/* .card-thumb::before {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-  background-color: rgba(33, 150, 243, 0.9);
-
-  transform: translateY(100%);
-  transition: transform 250ms var(--timing-function);
-
-  opacity: 1;
-} */
 
 .thumb-overlay {
   position: absolute;
@@ -520,7 +550,7 @@ ul {
   background-color: rgba(33, 150, 243, 0.9);
 
   transform: translateY(100%);
-  transition: transform 250ms var(--timing-function);
+  transition: transform var(--time) var(--timing-function);
 
   opacity: 0;
 }
@@ -560,6 +590,8 @@ ul {
 .work-exemples {
   display: block;
   text-decoration: none;
+
+  transition: box-shadow var(--time) var(--timing-function);
 }
 .work-exemples:hover .thumb-overlay,
 .work-exemples:focus .thumb-overlay {
@@ -577,21 +609,26 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 100%;
 
   background-color: var(--backdrop-color);
+
+  opacity: 1;
+  transition: opacity var(--time) var(--timing-function);
 }
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
 }
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+}
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   min-width: 528px;
   min-height: 581px;
@@ -599,6 +636,8 @@ ul {
   background-color: var(--primary-white-color);
   box-shadow: var(--box-shadow-modal);
   border-radius: 4px;
+
+  transition: transform var(--time) var(--timing-function);
 }
 .button-modal {
   position: absolute;
@@ -617,7 +656,7 @@ ul {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   fill: var(--logo-black-color);
 }
